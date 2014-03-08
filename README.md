@@ -10,7 +10,10 @@
 
 ## Summary
 
-Understanding how to bind and handle events is a core part of being a web developer. This challenge tasks you to take a reasonably well factored JavaScript application and extend it to include event bindings. Some of the good practices you'll see in the provided code are:
+Understanding how to bind and handle events is a core part of being a web
+developer. This challenge tasks you to take a reasonably well factored
+JavaScript application and extend it to include event bindings. Some of the
+good practices you'll see in the provided code are:
 
 1. Using templates from the HTML to add elements.
 1. Using functions to scope variables (i.e. todoTemplate is accessible within buildTodo, but not in the global scope. [Why?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FFunctions_and_function_scope))
@@ -20,7 +23,8 @@ This should provide you with a solid foundation to complete the remaining featur
 
 ## Releases
 
-This challenge requires you to manipulate objects that have been added dynamically. You may want to brush up on [Event Delegation][event-delegation].
+This challenge requires you to manipulate objects that have been added
+dynamically. You may want to brush up on [Event Delegation][event-delegation].
 
 ### Release 0 : Up and Running
 Verify that the existing application runs before modifying.  Then add the following features:
