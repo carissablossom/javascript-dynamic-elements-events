@@ -34,7 +34,20 @@ Verify that the existing application runs before modifying.  Then add the follow
 1. A todo may be marked as complete.
 1. A todo may be removed from the page.
 
-(Hint: Create named functions and bind them to the appropriate buttons)
+This challenge is meant to test your ability to consider how to engineer
+complex front-end code.  While a series of bindings applied at `document.ready`
+might _seem_ a reasonable approach, this challenge is (perhaps surprisingly)
+difficult and will quickly become unworkable if you don't bring better
+abstractions into play.  It is worth considering your approach before you begin
+typing.
+
+You may take a variety of approaches in solving this problem.  One possible
+approach would be to create named functions and bind them to the appropriate
+buttons.  Another, _better_, approach would be to come up with an
+object-oriented solution where `Todo` instances are synchronized to the
+back-end via Ajax and then added / changed / deleted on the front end.  For
+those who want to really stretch themselves, consider trying to implement your
+own MVC paradigm.
 
 ### Release 1 : Drag and Drop
 
