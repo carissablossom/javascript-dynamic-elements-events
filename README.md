@@ -27,6 +27,7 @@ This challenge requires you to manipulate objects that have been added
 dynamically. You may want to brush up on [Event Delegation][event-delegation].
 
 ### Release 0 : Up and Running
+
 Verify that the existing application runs before modifying.  Then add the following features:
 
 1. A todo may be added to the page.
@@ -43,6 +44,7 @@ When creating lists, you often want to reorder them. Use [HTML5 Drag and Drop](h
 * Redo this challenge using a template language like Mustache.js
 
 ## Resources
+
 * [Event Delegation][event-delegation]
 * [JavaScript scope][scope]
 
