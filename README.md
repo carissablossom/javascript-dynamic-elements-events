@@ -51,15 +51,31 @@ own MVC paradigm.
 
 ### Release 1 : Drag and Drop
 
-When creating lists, you often want to reorder them. Use [HTML5 Drag and Drop](http://www.html5rocks.com/en/tutorials/dnd/basics/) events to allow manual sorting of the todo list.
+When creating lists, you often want to reorder them.  jQuery UI provides a
+convenient means for implementing this.  Consider their [draggable][] and
+[droppable][] libraries.
+
+For a worthy, but optional, stretch, consider implementing drag and drop
+natively with [HTML5 Drag and
+Drop](http://www.html5rocks.com/en/tutorials/dnd/basics/).  If you choose this
+stretch, timebox the effort!
 
 ### Release 2 : Using Template Code
-* Redo this challenge using a template language like Mustache.js
+
+The initial template provided is HTML based.  Managing HTML templates is
+difficult and can be significantly streamlined by using a JavaScript template
+like Mustache.js.  Try using a JavaScript template.  You needn't put the
+**whole** application into a JavaScript template but rather just the Todo
+representation.
 
 ## Resources
 
 * [Event Delegation][event-delegation]
 * [JavaScript scope][scope]
+* [jQuery draggable][draggable]
+* [jQuery droppable][droppable]
 
 [event-delegation]: http://davidwalsh.name/event-delegate
 [scope]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FFunctions_and_function_scope
+[draggable]: https://jqueryui.com/draggable/
+[droppable]: https://jqueryui.com/droppable/
