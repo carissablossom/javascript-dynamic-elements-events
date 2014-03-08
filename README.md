@@ -15,8 +15,8 @@ developer. This challenge tasks you to take a reasonably well factored
 JavaScript application and extend it to include event bindings. Some of the
 good practices you'll see in the provided code are:
 
-1. Using templates from the HTML to add elements.
-1. Using functions to scope variables (i.e. todoTemplate is accessible within buildTodo, but not in the global scope. [Why?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FFunctions_and_function_scope))
+1. Using templates in HTML to add elements.
+1. Using functions to scope variables (i.e. todoTemplate is accessible within buildTodo, but not in the global scope. [Why?][scope])
 1. Using functions to do only one thing (i.e. building the Todo DOM Element vs building the element and adding it to the list)
 
 This should provide you with a solid foundation to complete the remaining features.
@@ -44,5 +44,7 @@ When creating lists, you often want to reorder them. Use [HTML5 Drag and Drop](h
 
 ## Resources
 * [Event Delegation][event-delegation]
+* [JavaScript scope][scope]
 
 [event-delegation]: http://davidwalsh.name/event-delegate
+[scope]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FFunctions_and_function_scope
