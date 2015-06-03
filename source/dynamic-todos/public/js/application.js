@@ -17,6 +17,11 @@ $(document).ready(function() {
 
     // })
 
+    $('.allBTN').on('click', function(e) {
+      e.preventDefault();
+      listAll();
+    })
+
     $('#addBTN').on('click', function(e){
 
       e.preventDefault();
@@ -31,10 +36,9 @@ $(document).ready(function() {
 
   //Create functions to add, remove and complete todos
 
-
   function appendDOM(item) {
     var todo = buildTodo(item.todo.todo_content);
-    $('body').append(todo);
+    $('#todo').append(todo);
   }
 
   function buildTodo(todoName) {
@@ -44,6 +48,63 @@ $(document).ready(function() {
     $todo.find('h2').text(todoName);
     // Returns the jQueryDOMElement to be used elsewhere.
     return $todo;
+  }
+
+  function ajaxGetAllTodos() {
+    var request = $.ajax({
+      url: "/todos",
+      type: "GET"
+    });
+
+    var results = request.done(function(response){
+      // console.log("Get all: Done.");
+      return response;
+    });
+
+    request.fail(function(response){
+      console.log("Get all: FAILED.");
+      console.log(response);
+    });
+
+    return results;
+
+  }
+
+  function listAll() {
+
+    // var promise = new Promise( function(resolve,reject){
+    //   var request = ajaxGetAllTodos();
+
+    //   console.log("request");
+    //   console.log(request);
+    //   return request;
+    // });
+    // promise.then(function(data){
+
+    //   console.log('done');
+    //   console.log(data);
+    // }, function(error){
+
+    //   console.log('done fucked up');
+    // });
+
+    // demonstration of promises in async ENV
+    console.log("async: before")
+
+    var todoPromise = ajaxGetAllTodos();
+
+    // This will print before the async functions has finished
+    console.log("async: ongoing")
+
+    todoPromise.then(function(result){
+
+      console.log("async: result");
+      var res = JSON.parse(result);
+      processTodos(res);
+    })
+
+    // This will print before the async functions has finished
+    console.log("async: after")
   }
 
   function ajaxToDo(item) {
@@ -64,6 +125,15 @@ $(document).ready(function() {
       console.log(response);
     });
 
+  };
+
+  function processTodos(items) {
+    var length = items.length
+    for(var i = 0; i < length; i += 1) {
+      // console.log('proccessing')
+      // console.log(items[i])
+      appendDOM(items[i]);
+    }
   };
 
 

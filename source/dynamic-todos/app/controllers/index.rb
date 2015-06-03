@@ -21,3 +21,7 @@ post '/add_todo' do
   end
 end
 
+get '/todos' do
+  @todos = Todo.all.to_json
+end
+

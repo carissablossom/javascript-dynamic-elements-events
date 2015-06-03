@@ -1,9 +1,10 @@
 /** {
   border: 1px solid blue;
-}*/
-
+}
+*/
 #todo {
-  width: 200px;
+  margin-top: 2%;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -14,4 +15,8 @@
 
 .todo.complete h2 {
   text-decoration: line-through;
+}
+
+.allBTN {
+  margin: 2%;
 }
