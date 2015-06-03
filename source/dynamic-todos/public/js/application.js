@@ -66,18 +66,19 @@ $(document).ready(function() {
 
 
   function ajaxGetAllTodos() {
+    console.log('async: ajax: initialize')
     var request = $.ajax({
       url: "/todos",
       type: "GET"
     });
 
     var results = request.done(function(response){
-      // console.log("Get all: Done.");
+      console.log("async: ajax: Get all: Done.");
       return response;
     });
 
     request.fail(function(response){
-      console.log("Get all: FAILED.");
+      console.log("async: Get all: FAILED.");
       console.log(response);
     });
 
@@ -89,22 +90,21 @@ $(document).ready(function() {
   function listAll() {
 
     // demonstration of promises in async ENV
-    console.log("async: before")
+    console.log("async: top code")
 
     var todoPromise = ajaxGetAllTodos();
 
     // This will print before the async functions has finished
-    console.log("async: ongoing")
+    console.log("async: middle code")
 
     todoPromise.then(function(result){
-
-      console.log("async: result");
-      var res = JSON.parse(result);
-      processTodos(res);
+      // We want to call this function after ajax success
+      processTodos(result);
+      console.log("async: block should execute after");
     })
 
     // This will print before the async functions has finished
-    console.log("async: after")
+    console.log("async: bottom code")
   };
 
 
@@ -129,7 +129,8 @@ $(document).ready(function() {
   };
 
 
-  function processTodos(items) {
+  function processTodos(response) {
+    var items = JSON.parse(response);
     var length = items.length
     for(var i = 0; i < length; i += 1) {
       // console.log('proccessing')
