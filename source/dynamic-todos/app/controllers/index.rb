@@ -1,14 +1,23 @@
+require 'json'
+
 get '/' do
   # Look in app/views/index.erb
   erb :index
 end
 
 post '/add_todo' do
-
-  p "$" * 90
-  p params
-  p "$" * 90
-
-  p "Inside /add_todo route!"
+  if params[:todo_item].present?
+    @todo = Todo.new(todo_content: params[:todo_item])
+    if @todo.save
+      status 201
+      return @todo.to_json
+    else
+      status 418
+      "ERROR"
+    end
+  else
+    return 418
+    "Error: No item submited."
+  end
 end
 
