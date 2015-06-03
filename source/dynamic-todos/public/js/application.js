@@ -7,8 +7,8 @@ $(document).ready(function() {
     // elements
 
 
-    // Tryed to .serialize() but not quite there....
-    // Somthing funky with null return
+    // Tried to .serialize() but not quite there....
+    // Something funky with null return
 
     // $("form.todo_form").on("submit", function(e){
     //   e.preventDefault();
@@ -23,7 +23,7 @@ $(document).ready(function() {
 
       var newItemText = $(this).siblings().val();
 
-      addToDo(newItemText);
+      ajaxToDo(newItemText);
 
     });
 
@@ -32,24 +32,10 @@ $(document).ready(function() {
   //Create functions to add, remove and complete todos
 
 
-  function addToDo(item) {
-
-    var request = $.ajax({
-      url: "/add_todo",
-      type: "POST",
-      data: {todo_item: item}
-    });
-
-    request.done(function(response){
-      console.log(response);
-    });
-    request.fail(function(response){
-      console.log("Ohhhh nose!");
-      console.log(response);
-    });
-
-  };
-
+  function appendDOM(item) {
+    var todo = buildTodo(item.todo.todo_content);
+    $('body').append(todo);
+  }
 
   function buildTodo(todoName) {
     // Creates an jQueryDOMElement from the todoTemplate.
@@ -59,6 +45,26 @@ $(document).ready(function() {
     // Returns the jQueryDOMElement to be used elsewhere.
     return $todo;
   }
+
+  function ajaxToDo(item) {
+
+    var request = $.ajax({
+      url: "/add_todo",
+      type: "POST",
+      data: {todo_item: item}
+    });
+
+    request.done(function(response){
+      var res = JSON.parse(response);
+      appendDOM(res);
+    });
+
+    request.fail(function(response){
+      console.log("Ohhhh nose!");
+      console.log(response);
+    });
+
+  };
 
 
   bindEvents();
