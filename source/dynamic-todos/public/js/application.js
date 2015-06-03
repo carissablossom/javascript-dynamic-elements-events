@@ -4,6 +4,12 @@ $(document).ready(function() {
   function bindEvents() {
     // Bind functions which add, remove, and complete todos to the appropriate
     // elements
+    $('#addBTN').on('click', function(e){
+      e.preventDefault();
+      console.log(e);
+      debugger
+    });
+
   }
 
   //Create functions to add, remove and complete todos
