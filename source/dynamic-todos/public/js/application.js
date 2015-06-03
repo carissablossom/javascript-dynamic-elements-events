@@ -32,23 +32,38 @@ $(document).ready(function() {
 
     });
 
+    $('#todo').on('click', '.delete', function(e){
+      e.preventDefault();
+      var todoItemID = $(this).parents('.todo').attr('id')
+      deleteTodo(todoItemID);
+    })
+
   }
 
   //Create functions to add, remove and complete todos
 
-  function appendDOM(item) {
-    var todo = buildTodo(item.todo.todo_content);
-    $('#todo').append(todo);
-  }
+  function removeDOM(item) {
+    var domElement = $('#'+item+'.todo')
+    domElement.remove();
+  };
 
-  function buildTodo(todoName) {
+
+  function appendDOM(item) {
+    var todo = buildTodo(item.todo.todo_content, item.todo.id);
+    $('#todo').append(todo);
+  };
+
+
+  function buildTodo(todoName, todoID) {
     // Creates an jQueryDOMElement from the todoTemplate.
     var $todo = $(todoTemplate);
     // Modifies it's text to use the passed in todoName.
     $todo.find('h2').text(todoName);
+    $todo.attr('id', todoID);
     // Returns the jQueryDOMElement to be used elsewhere.
     return $todo;
-  }
+  };
+
 
   function ajaxGetAllTodos() {
     var request = $.ajax({
@@ -68,25 +83,10 @@ $(document).ready(function() {
 
     return results;
 
-  }
+  };
+
 
   function listAll() {
-
-    // var promise = new Promise( function(resolve,reject){
-    //   var request = ajaxGetAllTodos();
-
-    //   console.log("request");
-    //   console.log(request);
-    //   return request;
-    // });
-    // promise.then(function(data){
-
-    //   console.log('done');
-    //   console.log(data);
-    // }, function(error){
-
-    //   console.log('done fucked up');
-    // });
 
     // demonstration of promises in async ENV
     console.log("async: before")
@@ -105,7 +105,8 @@ $(document).ready(function() {
 
     // This will print before the async functions has finished
     console.log("async: after")
-  }
+  };
+
 
   function ajaxToDo(item) {
 
@@ -127,6 +128,7 @@ $(document).ready(function() {
 
   };
 
+
   function processTodos(items) {
     var length = items.length
     for(var i = 0; i < length; i += 1) {
@@ -137,5 +139,30 @@ $(document).ready(function() {
   };
 
 
+  function deleteTodo(item) {
+    console.log('Delete: ');
+    console.log(item);
+
+    var request = $.ajax({
+      url: "/todos",
+      type: "DELETE",
+      data: { id: item }
+    })
+
+    request.done(function(response){
+      console.log('Delete: done');
+      console.log(response);
+
+      removeDOM(item);
+    });
+
+    request.fail(function(response){
+      console.log('Delete: fail');
+      console.log(response);
+    });
+  };
+
+
   bindEvents();
+
 });

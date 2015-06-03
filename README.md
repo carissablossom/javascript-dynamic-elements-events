@@ -1,4 +1,4 @@
-# P8 JavaScript Dynamic Elements And Events 
+l# P8 JavaScript Dynamic Elements And Events
 
 ## Learning Competencies
 
