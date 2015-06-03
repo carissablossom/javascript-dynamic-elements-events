@@ -4,6 +4,11 @@ get '/' do
 end
 
 post '/add_todo' do
+
+  p "$" * 90
+  p params
+  p "$" * 90
+
   p "Inside /add_todo route!"
 end
 
