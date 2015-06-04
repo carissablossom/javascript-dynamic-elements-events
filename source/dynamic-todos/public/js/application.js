@@ -36,7 +36,13 @@ $(document).ready(function() {
       e.preventDefault();
       var todoItemID = $(this).parents('.todo').attr('id')
       deleteTodo(todoItemID);
-    })
+    });
+
+    $('#todo').on('click', '.complete', function (e) {
+      e.preventDefault();
+      var todoItemID = $(this).parents('.todo').attr('id')
+      completeTodo(todoItemID);
+    });
 
   }
 
@@ -162,6 +168,26 @@ $(document).ready(function() {
       console.log(response);
     });
   };
+
+  function completeTodo(item) {
+
+    var request = $.ajax({
+      url: "/todos/"+item,
+      type: "PUT",
+      data: { completed: "true" }
+    });
+
+    request.done(function(response){
+      console.log(response);
+      console.log('ajax: complete: Done.');
+    });
+
+    request.fail(function(response){
+      console.log(response);
+      console.log('ajax: complete: Fail.');
+    });
+
+  }
 
 
   bindEvents();

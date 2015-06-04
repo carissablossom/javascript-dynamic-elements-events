@@ -29,6 +29,24 @@ post '/add_todo' do
 
 end
 
+put '/todos/:id' do
+
+  p '*' * 90
+  p params
+  p '*' * 90
+
+  @todo = Todo.where(id: params[:id]).first
+  ap @todo
+  if params[:completed] == "true"
+    status 200
+    @todo.completed = true
+    @todo.to_json
+  else
+    status 417
+    @todo.to_json
+  end
+end
+
 delete '/todos' do
 
   # p "&"*90
