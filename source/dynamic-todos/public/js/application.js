@@ -17,11 +17,6 @@ $(document).ready(function() {
 
     // })
 
-    $('.allBTN').on('click', function(e) {
-      e.preventDefault();
-      listAll();
-    })
-
     $('#addBTN').on('click', function(e){
 
       e.preventDefault();
@@ -32,13 +27,13 @@ $(document).ready(function() {
 
     });
 
-    $('#todo').on('click', '.delete', function(e){
+    $('#todo').on('click', '.deleteBTN', function(e){
       e.preventDefault();
       var todoItemID = $(this).parents('.todo').attr('id')
       deleteTodo(todoItemID);
     });
 
-    $('#todo').on('click', '.complete', function (e) {
+    $('#todo').on('click', '.completeBTN', function (e) {
       e.preventDefault();
       var todoItemID = $(this).parents('.todo').attr('id')
       completeTodo(todoItemID);
@@ -56,7 +51,7 @@ $(document).ready(function() {
 
   function appendDOM(item) {
     console.log(item);
-    var todo = buildTodo(item.todo.todo_content, item.todo.id, item.todo.completed);
+    var todo = buildTodo(item.todo);
     $('#todo').append(todo);
   };
 
@@ -64,23 +59,25 @@ $(document).ready(function() {
   function completeDOM(item) {
     var todoDOM = $('#todo #'+item.id)
     console.log(item);
-    var updatedTodo = buildTodo(item.todo_content, item.id, item.completed)
+    var updatedTodo = buildTodo(item)
 
     console.log(todo);
     todoDOM.replaceWith(updatedTodo);
   };
 
 
-  function buildTodo(todoName, todoID, todoCompleted) {
+  function buildTodo(todoObj) {
     // Creates an jQueryDOMElement from the todoTemplate.
     var $todo = $(todoTemplate);
     // Modifies it's text to use the passed in todoName.
-    $todo.find('h2').text(todoName);
-    $todo.attr('id', todoID);
-    if(todoCompleted === true){
-      var check = "<img class='done_mark' src='http://files.spazioweb.it/aruba35005/image/jobdone.jpg'>"
-      $todo.find('h2').append(check)
-      console.log("compelted todo hit");
+    var todoText = $todo.find('h2')
+    todoText.text(todoObj.todo_content);
+    $todo.attr('id', todoObj.id);
+    if(todoObj.completed === true){
+      var checkImg = "<img class='done_mark' src='http://files.spazioweb.it/aruba35005/image/jobdone.jpg'>";
+      todoText.append(checkImg);
+      $todo.addClass('complete');
+      todoText.after('<p>Completed at: '+ todoObj.completed_at )
     }
     // Returns the jQueryDOMElement to be used elsewhere.
     return $todo;
@@ -186,7 +183,8 @@ $(document).ready(function() {
   };
 
   function completeTodo(item) {
-
+    console.log("in complete ajax call");
+    console.log(item);
     var request = $.ajax({
       url: "/todos/"+item,
       type: "PUT",
@@ -207,7 +205,7 @@ $(document).ready(function() {
 
   }
 
-
+  listAll();
   bindEvents();
 
 });

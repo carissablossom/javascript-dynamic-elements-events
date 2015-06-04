@@ -16,6 +16,7 @@ GEM
     awesome_print (1.6.1)
     backports (3.3.3)
     builder (3.0.4)
+    chronic (0.10.2)
     daemons (1.1.9)
     diff-lcs (1.2.4)
     eventmachine (1.0.3)
@@ -69,6 +70,7 @@ DEPENDENCIES
   activerecord
   activesupport
   awesome_print
+  chronic
   factory_girl
   faker
   pg
