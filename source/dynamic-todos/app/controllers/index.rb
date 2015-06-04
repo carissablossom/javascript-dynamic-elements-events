@@ -6,7 +6,7 @@ get '/' do
 end
 
 get '/todos' do
-  @todos = Todo.all.to_json
+  @todos = Todo.order(:created_at).to_json
 end
 
 post '/add_todo' do
