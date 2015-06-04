@@ -55,7 +55,8 @@ $(document).ready(function() {
 
 
   function appendDOM(item) {
-    var todo = buildTodo(item.todo.todo_content, item.todo.id);
+    console.log(item);
+    var todo = buildTodo(item.todo.todo_content, item.todo.id, item.todo.completed);
     $('#todo').append(todo);
   };
 

@@ -39,7 +39,7 @@ put '/todos/:id' do
   ap @todo
   if params[:completed] == "true"
     status 200
-    @todo.completed = true
+    @todo.update_attributes(completed: true)
     @todo.to_json
   else
     status 417
