@@ -60,12 +60,27 @@ $(document).ready(function() {
   };
 
 
-  function buildTodo(todoName, todoID) {
+  function completeDOM(item) {
+    var todoDOM = $('#todo #'+item.id)
+    console.log(item);
+    var updatedTodo = buildTodo(item.todo_content, item.id, item.completed)
+
+    console.log(todo);
+    todoDOM.replaceWith(updatedTodo);
+  };
+
+
+  function buildTodo(todoName, todoID, todoCompleted) {
     // Creates an jQueryDOMElement from the todoTemplate.
     var $todo = $(todoTemplate);
     // Modifies it's text to use the passed in todoName.
     $todo.find('h2').text(todoName);
     $todo.attr('id', todoID);
+    if(todoCompleted === true){
+      var check = "<img class='done_mark' src='http://files.spazioweb.it/aruba35005/image/jobdone.jpg'>"
+      $todo.find('h2').append(check)
+      console.log("compelted todo hit");
+    }
     // Returns the jQueryDOMElement to be used elsewhere.
     return $todo;
   };
@@ -178,7 +193,9 @@ $(document).ready(function() {
     });
 
     request.done(function(response){
-      console.log(response);
+      var res = JSON.parse(response);
+      // console.log(res.todo);
+      completeDOM(res.todo);
       console.log('ajax: complete: Done.');
     });
 
