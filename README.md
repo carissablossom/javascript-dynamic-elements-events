@@ -31,11 +31,11 @@ Verify that the existing application runs before modifying.  Then add the follow
 
 (Hint: Create named functions and bind them to the appropriate buttons)
 
-### Release 1 : Drag and Drop
+### Release 1 : Drag and Drop (OPTIONAL)
 
 When creating lists, you often want to reorder them. Use [HTML5 Drag and Drop](http://www.html5rocks.com/en/tutorials/dnd/basics/) events to allow manual sorting of the todo list.
 
-### Release 2 : Using Template Code
+### Release 2 : Using Template Code (OPTIONAL)
 * Redo this challenge using a template language like Mustache.js
 
 ## Resources
