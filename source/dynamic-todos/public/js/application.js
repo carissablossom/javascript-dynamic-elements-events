@@ -4,11 +4,11 @@ $(document).ready(function() {
 
 
 function bindEvents() {
-  $('#todo').on('click', '#create-todo', function(e){
+  $('#todo').on('click', '#create-todo', function(e){ //<--- the #todo will make it so the form sees every single click that happens. the #create-todo sets which clicks should be reacted to
     e.preventDefault();
-    var action = $('#todo-form').attr('action');
-    var method = $('#todo-form').attr('method');
-    var item = $('.todo').val();
+    var action = $('#todo-form').attr('action'); //<-- calling the action of the existing form
+    var method = $('#todo-form').attr('method'); //<-- calling the method of the existing form
+    var item = $('.todo').val(); //<-- calling the method of the existing form
     console.log("wer're clicking submit and preventing default");
     console.log(action);
 
