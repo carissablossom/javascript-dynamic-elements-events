@@ -3,9 +3,36 @@ $(document).ready(function() {
 });
 
 
+    console.log('salmon');
 function bindEvents() {
-  // Bind functions which add, remove, and complete todos to the appropriate
-  // elements
+
+  $('#todo').on('click', '#create-todo', function(e){
+    e.preventDefault();
+
+    var action = $('#todo-form').attr('action');
+    var method = $('#todo-form').attr('method');
+    var item = $('.todo').val();
+    console.log("tofu");
+    var request = $.ajax({
+      url: action,
+      type: method,
+      data: {content: item},
+      dataType: 'JSON'
+    });
+
+    request.done(function(response){
+      console.log("success");
+      console.log(response);
+      var finalContent = buildTodo(response['content']);
+      $('.todo_list').append(finalContent)
+      $('.todo').val('')
+    });
+
+    request.fail(function(response){
+      console.log("Fail")
+      console.log(response);
+    })
+  });
 }
 
 function buildTodo(todoName) {

@@ -11,3 +11,10 @@
 .todo.complete h2 {
   text-decoration: line-through;
 }
+
+.header_bar {
+  text-align: center;
+  background-color: black;
+  height: 2em;
+  color: #fff;
+}
