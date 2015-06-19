@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function,$(document).ready(function() {
   bindEvents();
 });
 
@@ -6,6 +6,27 @@ $(document).ready(function() {
 function bindEvents() {
   // Bind functions which add, remove, and complete todos to the appropriate
   // elements
+  $('#todo').on('click', '#create-todo', function(e){
+    e.preventDefault();
+    var action= $('#todo-form').attr('action');
+    var method= $('#todo-form').attr('method');
+    var item = $('.todo').val();
+    var request = $.ajax({
+      url: action,
+      type: method,
+      data: {content: item},
+      dataType: 'JSON'
+    });
+    request.done(function(response){
+      console.log(response);
+      var finalContent = buildTodo(response['content']);
+      $('.todo_list').append(finalContent);
+      $('.todo').val('');
+    });
+    request.fail(function(){
+      alert('FAIL');
+    });
+ });
 }
 
 function buildTodo(todoName) {
