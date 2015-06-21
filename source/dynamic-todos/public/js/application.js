@@ -28,15 +28,15 @@ function bindEvents() {
 
     request.fail(function(response){
       console.log("failed");
-      alert("failed");
+      alert("failed1");
     });
   });
 
-  $('.todo_list').on("click", ".delete", function(event){
+  $('.todo_list').on("click", "a.delete", function(event){
     event.preventDefault();
 
-    var path = "/"
     var thisId = $(this).first().parent().parent().parent().attr('id');
+    var path = "/"+thisId;
 
     var request = $.ajax({
       url: path,
@@ -51,10 +51,33 @@ function bindEvents() {
 
     request.fail(function(response){
       console.log("fail");
-      alert("fail");
+      alert("fail2");
     });
   });
 
+  $('.todo_list').on("click", "a.complete", function(event){
+    event.preventDefault();
+
+    var thisId = $(this).first().parent().parent().parent().attr('id');
+    var path = "/"+thisId;
+
+    var request = $.ajax({
+      url: path,
+      dataType: 'JSON',
+      type: "POST",
+      data: {id: thisId}
+    });
+
+    request.done(function(response){
+      console.log("done");
+      $('#'+thisId).addClass('complete');
+    });
+
+    request.fail(function(response){
+      console.log("fail");
+      alert("fail3");
+    });
+  });
 };
 
 function buildTodo(todoName, id) {

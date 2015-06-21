@@ -13,9 +13,17 @@ post '/add_todo' do
   end
 end
 
-delete '/' do
+delete '/:id' do
   @id = params[:id]
   @todo = Todo.find(@id)
   @todo.destroy
+  return {id: @id}.to_json
+end
+
+post '/:id' do
+  @id = params[:id]
+  @todo = Todo.find(@id)
+  @todo.completed = true
+  @todo.save
   return {id: @id}.to_json
 end
