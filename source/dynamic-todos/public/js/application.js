@@ -12,7 +12,7 @@ function bindEvents() {
     var route = $('#add-todo-form').attr('action');
     var method = $('#add-todo-form').attr('method')
 
-    var todo_data = $('.todo').serialize()
+    var todo_data = $('.todo').val()
 
     debugger
 
