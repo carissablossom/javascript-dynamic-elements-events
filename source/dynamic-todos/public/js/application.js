@@ -25,6 +25,9 @@ function bindEvents() {
 
     request.done(function(response) {
       console.log('SUCCESS', response)
+
+      $('.todo_list').append('<li>' + response.content + '</li>');
+      $('.todo').val('');
     })
 
     request.fail(function(response) {
