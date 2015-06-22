@@ -60,6 +60,11 @@ function bindEvents() {
     })
   })
 
+  //var completeTodoButtonListener
+  $('.todo_list').on('click', '.complete', function(event) {
+    event.preventDefault();
+  })
+
 }
 
 function buildTodo(todoName) {
