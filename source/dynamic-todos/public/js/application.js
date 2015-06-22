@@ -14,8 +14,6 @@ function bindEvents() {
 
     var todo_data = $('.todo').val()
 
-    debugger
-
     var request = $.ajax({
       url: route,
       type: method,
@@ -26,7 +24,8 @@ function bindEvents() {
     request.done(function(response) {
       console.log('SUCCESS', response)
 
-      $('.todo_list').append('<li>' + response.content + '</li>');
+      var todo_item = buildTodo(response.content)
+      $('.todo_list').append(todo_item)
       $('.todo').val('');
     })
 
