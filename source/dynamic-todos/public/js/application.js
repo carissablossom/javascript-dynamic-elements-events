@@ -4,8 +4,35 @@ $(document).ready(function() {
 
 
 function bindEvents() {
-  // Bind functions which add, remove, and complete todos to the appropriate
-  // elements
+  
+  // var addToDoButtonListener
+  $('#add-todo-button').on('click', function(event) {
+    event.preventDefault();
+
+    var route = $('#add-todo-form').attr('action');
+    var method = $('#add-todo-form').attr('method')
+
+    var todo_data = $('.todo').serialize()
+
+    debugger
+
+    var request = $.ajax({
+      url: route,
+      type: method,
+      dataType: 'json',
+      data: todo_data
+    })
+
+    request.done(function(response) {
+      console.log('SUCCESS', response)
+    })
+
+    request.fail(function(response) {
+      console.log('FAIL', response)
+    })
+
+  })
+
 }
 
 function buildTodo(todoName) {

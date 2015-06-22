@@ -5,5 +5,7 @@ end
 
 post '/add_todo' do
   p "Inside /add_todo route!"
+
+  p params
 end
 
