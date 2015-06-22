@@ -35,6 +35,31 @@ function bindEvents() {
 
   })
 
+  //var deleteToDoButtonListener
+  $('.todo_list').on('click', '.delete', function(event) {
+    event.preventDefault();
+
+    var todoName = $('.todo_list').children().children().first().text()
+
+    var request = $.ajax({
+      url: '/delete',
+      type: 'delete',
+      dataType: 'json',
+      data: { todo: todoName }
+    })
+
+    request.done(function(response){
+      console.log('SUCCESS', response)
+
+      $(".todo_list").find("h2:contains("+response.todo_name+")").siblings().remove()
+      $(".todo_list").find("h2:contains("+response.todo_name+")").remove()
+    })
+
+    request.fail(function(response){
+      console.log('FAIL', response)
+    })
+  })
+
 }
 
 function buildTodo(todoName) {
