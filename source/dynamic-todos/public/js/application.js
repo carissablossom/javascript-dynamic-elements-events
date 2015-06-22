@@ -20,7 +20,7 @@ function bindEvents() {
       url: route,
       type: method,
       dataType: 'json',
-      data: todo_data
+      data: {content: todo_data}
     })
 
     request.done(function(response) {

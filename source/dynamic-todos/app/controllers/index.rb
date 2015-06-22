@@ -4,8 +4,12 @@ get '/' do
 end
 
 post '/add_todo' do
-  p "Inside /add_todo route!"
-  p params
-  return {todo: params}.to_json
+  new_todo = Todo.new(todo_content: params[:content])
+
+  if new_todo.save
+  	return {content: new_todo.todo_content}.to_json
+  else
+  	erb :index
+  end
 end
 
