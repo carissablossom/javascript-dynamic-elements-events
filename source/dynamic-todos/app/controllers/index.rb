@@ -5,7 +5,7 @@ get '/' do
 end
 
 #add
-post '/add_todo' do
+post '/todo' do
   todo = Todo.new(todo_content: params[:content])
   if todo.save
     {todo_content: todo.todo_content}.to_json
@@ -13,7 +13,7 @@ post '/add_todo' do
 end
 
 #delete
-delete '/add_todo/:id' do 
+delete '/todo/:id' do
  todo = Todo.find(params[:id])
  if todo.destroy
   content_type :json

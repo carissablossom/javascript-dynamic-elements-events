@@ -1,6 +1,7 @@
 $(document).ready(function() {
   bindEvents();
   deleteTodos();
+  completeTodos();
 });
 
 // add
@@ -16,9 +17,10 @@ bindEvents = function() {
       data: {content: item},
       dataType: 'json'
     });
-    request.done(function(r){
+    request.done(function(response){
+      //debugger
       console.log('success!');
-      var content = buildTodo(r['content']);
+      var content = buildTodo(response['todo_content']);
       $('.todo_list').append(content)
       $('.todo').val('')
     });
@@ -44,16 +46,21 @@ deleteTodos = function() {
     });
 
     request.done(function(r){
+      //debugger
       console.log(r);
       console.log("deleted");
       todo.remove();
     });
+
+   request.fail(function(){
+    console.log("fail");
+   });
   });
 }
 
 // complete (mark button as completed)
 function completeTodos() {
-  $('.complete').on('click', function(e){
+  $('a.complete').on('click', function(e){
     e.preventDefault();
 
     var todo = $(this).closest('.todo');
@@ -68,29 +75,10 @@ function completeTodos() {
     request.done(function(response){
       console.log(response);
       console.log('success??');
-      todo.find('.complete').text(response.completed);
-    })
-  })
-
+      todo.find('.complete').text("true");
+    });
+  });
 }
-
-// button_click = function() { $('.vote-button').on('click', function(e) {
-//   e.preventDefault();
-
-//   var article = $(this).closest('article');
-//   var path = $(this).attr('href');
-
-//   var request = $.ajax({
-//     method: 'POST',
-//     url: path,
-//     dataType: 'json'
-//   });
-
-//   request.done(function(response){
-//     article.find('.points').text(response.vote_count);
-//   });
-//  });
-// }
 
 function buildTodo(todoName) {
   // gets todoTemplate stored in DOM.

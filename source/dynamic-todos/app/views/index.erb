@@ -1,6 +1,6 @@
 <div id="todo">
   <div class="toolbox">
-    <form id="todo-form" action="/add_todo" method="post">
+    <form id="todo-form" action="/todo" method="post">
       <input type="text" class="todo" placeholder="Put your todo item here!"/>
       <!-- <input id="create-todo" type="submit" value="Add Todo"/> -->
       <button id="create-todo" class="add" type="submit">Add Todo</button>
@@ -22,16 +22,16 @@
   </div>
 </div> -->
 
-<div id="todo_template" style="display:none;">
+<div id="todo_template">
  <% if @todo %>
 
   <div class="todo" style="text-align:center;">
   <% @todo.each do |t| %>
   <h2><%= t.todo_content %></h2>
   <ul>
-    <li><a class="delete" value="delete" method="_method" href="/add_todo/<%= t.id %>">delete</a></li>
-    <li><a class="complete" method="_method" href="/<%=t.id%>">complete? <%=t.completed %></a></li>
+    <li><a class="delete" value="delete" method="_method" href="/todo/<%= t.id %>">delete</a></li>
+    <li><a class="complete" value="post" method="_method" href="/<%=t.id%>">complete? <%=t.completed %></a></li>
   </ul>
-</div> 
+</div>
   <% end %>
-<% end %> 
+<% end %>
