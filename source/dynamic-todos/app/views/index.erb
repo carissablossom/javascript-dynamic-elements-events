@@ -1,9 +1,9 @@
 <div id="todo">
   <div class="toolbox">
-    <form action="/add_todo" method="post">
-      <input type="text" class="todo" value="Put your todo item here!"/>
-      <input type="submit" value="Add Todo"/>
-      <!-- <button class="add" type="submit">Add Todo</button> -->
+    <form id="todo-form" action="/add_todo" method="post">
+      <input type="text" class="todo" placeholder="Put your todo item here!"/>
+      <!-- <input id="create-todo" type="submit" value="Add Todo"/> -->
+      <button id="create-todo" class="add" type="submit">Add Todo</button>
     </form>
   </div>
 
@@ -11,8 +11,8 @@
 
   </div>
 
-  <div id="todo_template" style="display: none;">
-    <div class="todo">
+<!-- <div id="todo_template" style="display: none;">
+  <div class="todo">
       <h2>Todo Name</h2>
       <ul>
         <li><a href="#" class="delete">Delete</a></li>
@@ -20,4 +20,18 @@
       </ul>
     </div>
   </div>
-</div>
+</div> -->
+
+<div id="todo_template" style="display:none;">
+ <% if @todo %>
+
+  <div class="todo" style="text-align:center;">
+  <% @todo.each do |t| %>
+  <h2><%= t.todo_content %></h2>
+  <ul>
+    <li><a class="delete" value="delete" method="_method" href="/add_todo/<%= t.id %>">delete</a></li>
+    <li><a class="complete" method="_method" href="/<%=t.id%>">complete? <%=t.completed %></a></li>
+  </ul>
+</div> 
+  <% end %>
+<% end %> 

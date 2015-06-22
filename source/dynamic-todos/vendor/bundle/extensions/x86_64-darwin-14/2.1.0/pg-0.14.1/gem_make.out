@@ -1,0 +1,65 @@
+/usr/local/Cellar/ruby/2.1.3/bin/ruby -r ./siteconf20150618-35031-lnk0l2.rb extconf.rb 
+checking for pg_config... yes
+Using config values from /usr/local/bin/pg_config
+checking for libpq-fe.h... yes
+checking for libpq/libpq-fs.h... yes
+checking for pg_config_manual.h... yes
+checking for PQconnectdb() in -lpq... yes
+checking for PQconnectionUsedPassword()... yes
+checking for PQisthreadsafe()... yes
+checking for PQprepare()... yes
+checking for PQexecParams()... yes
+checking for PQescapeString()... yes
+checking for PQescapeStringConn()... yes
+checking for PQescapeLiteral()... yes
+checking for PQescapeIdentifier()... yes
+checking for PQgetCancel()... yes
+checking for lo_create()... yes
+checking for pg_encoding_to_char()... yes
+checking for pg_char_to_encoding()... yes
+checking for PQsetClientEncoding()... yes
+checking for PQlibVersion()... yes
+checking for PQping()... yes
+checking for rb_encdb_alias()... yes
+checking for rb_enc_alias()... no
+checking for PGRES_COPY_BOTH in libpq-fe.h... yes
+checking for PGRES_SINGLE_TUPLE in libpq-fe.h... yes
+checking for struct pgNotify.extra in libpq-fe.h... yes
+checking for unistd.h... yes
+checking for ruby/st.h... yes
+creating extconf.h
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling pg.c
+compiling pg_connection.c
+pg_connection.c:269:8: warning: unused variable 'error' [-Wunused-variable]
+        VALUE error;
+              ^
+pg_connection.c:2064:9: warning: 'rb_thread_select' is deprecated [-Wdeprecated-declarations]
+                ret = rb_thread_select( sd+1, &sd_rset, NULL, NULL, ptimeout );
+                      ^
+/usr/local/Cellar/ruby/2.1.3/include/ruby-2.1.0/ruby/intern.h:440:16: note: 'rb_thread_select' has been explicitly marked deprecated here
+DEPRECATED(int rb_thread_select(int, fd_set *, fd_set *, fd_set *, struct timeval *));
+               ^
+/usr/local/Cellar/ruby/2.1.3/include/ruby-2.1.0/x86_64-darwin14.0/ruby/config.h:114:52: note: expanded from macro 'DEPRECATED'
+#define DEPRECATED(x) __attribute__ ((deprecated)) x
+                                                   ^
+pg_connection.c:2594:15: warning: 'rb_thread_select' is deprecated [-Wdeprecated-declarations]
+                if ( (ret = rb_thread_select( sd+1, &sd_rset, NULL, NULL, ptimeout )) < 0 )
+                            ^
+/usr/local/Cellar/ruby/2.1.3/include/ruby-2.1.0/ruby/intern.h:440:16: note: 'rb_thread_select' has been explicitly marked deprecated here
+DEPRECATED(int rb_thread_select(int, fd_set *, fd_set *, fd_set *, struct timeval *));
+               ^
+/usr/local/Cellar/ruby/2.1.3/include/ruby-2.1.0/x86_64-darwin14.0/ruby/config.h:114:52: note: expanded from macro 'DEPRECATED'
+#define DEPRECATED(x) __attribute__ ((deprecated)) x
+                                                   ^
+3 warnings generated.
+compiling pg_result.c
+linking shared-object pg_ext.bundle
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 pg_ext.bundle ./.gem.20150618-35031-sk75ho
+installing default pg_ext libraries
