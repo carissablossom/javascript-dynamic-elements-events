@@ -15,10 +15,22 @@ post '/add_todo' do
   end
 end
 
-delete '/delete' do
+delete '/delete_todo' do
   todo = Todo.where(todo_content: params[:todo]).first
 	todo.destroy()
-	
+
 	return { todo_id: todo.id, todo_name: todo.todo_content }.to_json
 end
 
+post '/complete_todo' do
+	p "*" * 100
+	p 'in complete todo'
+	p params
+	p "*" * 100
+
+	todo = Todo.where(todo_content: params[:todo]).first
+
+	return { todo_id: todo.id, todo_name: todo.todo_content }.to_json
+
+
+end

@@ -42,7 +42,7 @@ function bindEvents() {
     var todoName = $('.todo_list').children().children().first().text()
 
     var request = $.ajax({
-      url: '/delete',
+      url: '/delete_todo',
       type: 'delete',
       dataType: 'json',
       data: { todo: todoName }
@@ -63,6 +63,26 @@ function bindEvents() {
   //var completeTodoButtonListener
   $('.todo_list').on('click', '.complete', function(event) {
     event.preventDefault();
+
+    var todoName = $('.todo_list').children().children().first().text()
+
+    var request = $.ajax({
+      url: '/complete_todo',
+      type: 'post',
+      dataType: 'json',
+      data: { todo: todoName }
+    })
+
+    request.done(function(response) {
+      console.log('SUCCESS', response)
+      $('.todo_list').find('h2:contains('+response.todo_name+')').siblings().children().last().text('COMPLETED!')
+    debugger
+
+    })
+
+    request.fail(function(response) {
+      console.log('FAIL', response)
+    })
   })
 
 }
