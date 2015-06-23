@@ -18,9 +18,9 @@
         <% @notes.each_with_index do |task| %>
           <li class="note">
             <span class=""><%=task.todo_content %></span> -
-            <span class="">Status: <%= task.completed %></span>
+            <span class="status">Status: <%= task.completed %></span>
             <span class=""><a href="/todo/<%=task.id%>" class="delete-task">Delete</a></span>
-            <span class=""><a href="#" class="complete">Complete</a></span>
+            <span class=""><a href="/todo/<%=task.id%>" class="update-task">Complete</a></span>
           </li>
         <%end%>
       </ol>

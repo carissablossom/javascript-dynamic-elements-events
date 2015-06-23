@@ -21,6 +21,20 @@ $(document).ready(function() {
     });
   });
 
+//ellis worked on this and not sure if works
+  $('.update-task').on('click', function(event){
+    event.preventDefault();
+    var link = $(this);
+    var note = link.closest('.note')
+    var request = $.ajax({
+      method: 'put',
+      url: link.attr('href')
+    });
+    request.done(function(response){
+      $('note status').html('response.status')
+    })
+  });
+
 });
 
 

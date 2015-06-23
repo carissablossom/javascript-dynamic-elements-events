@@ -11,6 +11,9 @@ end
 
 
 put '/todo/:id' do
+  Todo.where(params[:id]).status = True
+
+  redirect '/'
 end
 
 delete '/todo/:id' do
