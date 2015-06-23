@@ -24,8 +24,6 @@ $(document).ready(function() {
       })
 
       request.done(function(response) {
-        console.log('SUCCESS', response)
-
         var todo_item = buildTodo(response.content)
         $('.todo_list').append(todo_item)
         $('.todo').val('');
@@ -53,12 +51,6 @@ $(document).ready(function() {
       })
 
       request.done(function(response){
-        console.log('SUCCESS', response)
-
-      debugger
-
-        // $(".todo_list").find("h2:contains("+response.todo_name+")").siblings().remove()
-        // $(".todo_list").find("h2:contains("+response.todo_name+")").remove()
         $(".todo_list").find("h2:contains("+response.todo_name+")").closest('.todo').remove()
       })
 
