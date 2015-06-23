@@ -4,6 +4,9 @@ $(document).ready(function() {
 
 
 function bindEvents() {
+  $("form").on('submit', function(e) {
+
+  });
   // Bind functions which add, remove, and complete todos to the appropriate
   // elements
 }
