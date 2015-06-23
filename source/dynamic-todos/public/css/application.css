@@ -1,5 +1,5 @@
 #todo {
-  width: 200px;
+  width: 500px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -10,4 +10,9 @@
 
 .todo.complete h2 {
   text-decoration: line-through;
+}
+
+
+.notes > .note:before {
+  content: counter;
 }

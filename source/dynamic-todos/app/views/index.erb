@@ -1,7 +1,7 @@
 <div id="todo">
   <div class="toolbox">
-    <form action="/add_todo" method="post">
-      <input type="text" class="todo" value="Put your todo item here!"/>
+    <form action="/todo" method="post">
+      <input type="text" class="todo" placeholder="Put your todo item here!" name="todo_content"/>
       <input type="submit" value="Add Todo"/>
       <!-- <button class="add" type="submit">Add Todo</button> -->
     </form>
@@ -11,13 +11,19 @@
 
   </div>
 
-  <div id="todo_template" style="display: none;">
+  <div id="todo_template" >
     <div class="todo">
       <h2>Todo Name</h2>
-      <ul>
-        <li><a href="#" class="delete">Delete</a></li>
-        <li><a href="#" class="complete">Complete</a></li>
-      </ul>
+      <ol class="notes">
+        <% @notes.each_with_index do |task| %>
+          <li class="note">
+            <span class=""><%=task.todo_content %></span> -
+            <span class="">Status: <%= task.completed %></span>
+            <span class=""><a href="/todo/<%=task.id%>" class="delete-task">Delete</a></span>
+            <span class=""><a href="#" class="complete">Complete</a></span>
+          </li>
+        <%end%>
+      </ol>
     </div>
   </div>
 </div>

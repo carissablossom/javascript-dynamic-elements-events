@@ -1,5 +1,26 @@
 $(document).ready(function() {
   bindEvents();
+
+
+
+  $('.delete-task').on('click', function(event){
+    event.preventDefault();
+    var link = $(this);
+    var note = link.closest('.note');
+    var request = $.ajax({
+      method: 'delete',
+      url: link.attr('href'),
+    });
+
+    note.addClass('deleting');
+
+    request.done(function(){
+      note.fadeOut(function(){
+        note.remove('slow');
+      });
+    });
+  });
+
 });
 
 
