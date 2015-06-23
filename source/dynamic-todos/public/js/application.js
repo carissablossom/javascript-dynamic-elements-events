@@ -2,7 +2,7 @@ $(document).ready(function() {
   // bindEvents();
   addToDoButtonListener();
   deleteToDoButtonListener();
-  // completeTodoButtonListener();
+  completeTodoButtonListener();
 });
 
 
@@ -61,13 +61,17 @@ $(document).ready(function() {
   }
 
   var completeTodoButtonListener = function() {
-    $('.todo_list').on('click', '.complete', function(event) {
+    $('#todo').on('click', '.complete', function(event) {
       event.preventDefault();
 
-      var todoName = $('.todo_list').children().children().first().text()
+      // debugger
+
+      var route = $(this).attr('href');
+      var todo = $(this).closest('.todo');
+      var todoName = $(todo).children().first().text();
 
       var request = $.ajax({
-        url: '/complete_todo',
+        url: route,
         type: 'post',
         dataType: 'json',
         data: { todo: todoName }
@@ -75,9 +79,12 @@ $(document).ready(function() {
 
       request.done(function(response) {
         console.log('SUCCESS', response)
-        $('.todo_list').find('h2:contains('+response.todo_name+')').siblings().children().last().text('COMPLETED!')
-      debugger
 
+        if (response.todo_status === true) {
+          $('.todo_list').find('h2:contains('+response.todo_name+')').siblings().children().last().text("Completed!")
+          // debugger
+        }
+        // $('.todo_list').find('h2:contains('+response.todo_name+')').siblings().children().last().text('COMPLETED!')
       })
 
       request.fail(function(response) {
