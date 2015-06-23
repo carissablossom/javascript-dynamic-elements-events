@@ -21,7 +21,9 @@ function bindEvents() {
     })
 
     request.done(function(response) {
-      var todo_item = buildTodo(response)
+      console.log('SUCCESS', response)
+
+      var todo_item = buildTodo(response.content)
       $('.todo_list').append(todo_item)
       $('.todo').val('');
     })
@@ -38,23 +40,23 @@ function bindEvents() {
     // var todoName = $('.todo_list').children().children().first().text()
     debugger
 
-    // var request = $.ajax({
-    //   url: '/delete_todo',
-    //   type: 'delete',
-    //   dataType: 'json',
-    //   data: { todo: todoName }
-    // })
+    var request = $.ajax({
+      url: '/delete_todo',
+      type: 'delete',
+      dataType: 'json',
+      data: { todo: todoName }
+    })
 
-    // request.done(function(response){
-    //   console.log('SUCCESS', response)
+    request.done(function(response){
+      console.log('SUCCESS', response)
 
-    //   $(".todo_list").find("h2:contains("+response.todo_name+")").siblings().remove()
-    //   $(".todo_list").find("h2:contains("+response.todo_name+")").remove()
-    // })
+      $(".todo_list").find("h2:contains("+response.todo_name+")").siblings().remove()
+      $(".todo_list").find("h2:contains("+response.todo_name+")").remove()
+    })
 
-    // request.fail(function(response){
-    //   console.log('FAIL', response)
-    // })
+    request.fail(function(response){
+      console.log('FAIL', response)
+    })
   })
 
   //var completeTodoButtonListener
