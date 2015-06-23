@@ -40,6 +40,7 @@ function bindEvents() {
     event.preventDefault();
 
     var todoName = $('.todo_list').children().children().first().text()
+    debugger
 
     var request = $.ajax({
       url: '/delete_todo',
