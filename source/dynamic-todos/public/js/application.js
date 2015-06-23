@@ -78,13 +78,9 @@ $(document).ready(function() {
       })
 
       request.done(function(response) {
-        console.log('SUCCESS', response)
-
         if (response.todo_status === true) {
           $('.todo_list').find('h2:contains('+response.todo_name+')').siblings().children().last().text("Completed!")
-          // debugger
         }
-        // $('.todo_list').find('h2:contains('+response.todo_name+')').siblings().children().last().text('COMPLETED!')
       })
 
       request.fail(function(response) {
