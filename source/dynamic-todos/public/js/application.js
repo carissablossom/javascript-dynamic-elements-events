@@ -6,6 +6,55 @@ $(document).ready(function() {
 function bindEvents() {
   // Bind functions which add, remove, and complete todos to the appropriate
   // elements
+  $('.toolbox').on("submit", function(event){
+    event.preventDefault();
+
+    var path = $(this).children('form').attr('action')
+    var form = $(this).children('form')
+
+
+
+    var request = $.ajax({
+      url: path,
+      type: "POST",
+      data: form.serialize()
+    })
+
+    request.done(function(response){
+      console.log(response);
+      $('.todo_list').append(response)
+    })
+
+    request.fail(function(response){
+      console.log(response);
+    })
+  })
+
+  $('.complete').on("click",  function(event){
+    event.preventDefault();
+
+    var path = $(this).closest('div').attr('id')
+
+    var request = $.ajax({
+      url: path,
+      dataType: "JSON",
+      type: "GET"
+    })
+
+    request.done(function(response){
+      console.log($('div #'+response.todo+' li .complete'))
+      // debugger
+      $('div #'+response.todo+' li .complete').css("display", "none");
+    })
+
+    request.fail(function(response){
+      console.log(response)
+      console.log("fail")
+    })
+
+
+  })
+
 }
 
 function buildTodo(todoName) {
