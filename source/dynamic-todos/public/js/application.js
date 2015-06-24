@@ -5,9 +5,13 @@ $(document).ready(function() {
 function bindEvents() {
   addTodo();
   deleteTodo();
+  // completeTodo();
 };
 
 
+function completeTodo(){
+  $()
+};
 
 function deleteTodo(){
   $('.todo_list').on('click', '.delete', function(event){
