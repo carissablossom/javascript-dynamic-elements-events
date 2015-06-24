@@ -23,13 +23,9 @@ $(document).ready(function() {
     request.fail(function(response){
       console.log(response)
     })
-
   });
 
-
-  var todoList = $('.todo_list')
-
-  todoList.on('click', '.complete', function(event){
+  $('.todo_list').on('click', '.complete', function(event){
     event.preventDefault()
     var url = $(this).attr('href')
     var request = $.ajax({
@@ -44,10 +40,7 @@ $(document).ready(function() {
     request.fail(function(response){
       console.log(response)
     })
-
   });
-
-
 
 
 
@@ -69,9 +62,7 @@ $(document).ready(function() {
     request.fail(function(response){
       debugger
     })
-
   };
-
 });
 
 
@@ -91,4 +82,4 @@ function buildTodo(todoName) {
   return $todo;
 }
 
-//Create functions to add, remove and complete todos
+
