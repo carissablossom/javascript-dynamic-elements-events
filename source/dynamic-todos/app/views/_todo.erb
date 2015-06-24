@@ -1,0 +1,7 @@
+<div id="<%=@todo.id%>">
+  <h2><%= @todo.todo_content %></h2>
+  <ul>
+    <li><a href="/todo/<%=@todo.id%>" class="delete">Delete</a></li>
+    <li><a href="/todo/<%=@todo.id%>" class="complete">Complete</a></li>
+  </ul>
+</div>
