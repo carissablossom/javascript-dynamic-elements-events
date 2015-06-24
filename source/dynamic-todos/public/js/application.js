@@ -43,7 +43,20 @@ function bindEvents() {
 
 
   //=============================DELETE TASK=================================
-  $()
+  $('.todo_list').on('click', 'a.delete', function(e) {
+    e.preventDefault();
+
+    var getId = $(this).first().parent().parent().attr('id'); //<------ how does this work?
+    var path = '/' + getId;
+
+    var request = .ajax({
+      url: path,
+      method: 'DELETE',
+      dataType: 'JSON',
+      data: {id: getId}
+    });
+
+  });
 
 }
 
