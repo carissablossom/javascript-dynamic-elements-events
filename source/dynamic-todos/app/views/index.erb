@@ -8,6 +8,16 @@
   </div>
 
   <div class="todo_list">
+    <%if @todo_list%>
+      <%@todo_list.each do |todo|%>
+        <div id="<%=todo.id%>">
+          <h2><%=todo.todo_content%></h2>
+          <p>completed?: <%=todo.completed%></p>
+          <li><a href="#" class="delete">Delete</a></li>
+          <li><a href="#" class="complete">Complete</a></li>
+        </div>
+      <%end%>
+    <%end%>
 
   </div>
 
