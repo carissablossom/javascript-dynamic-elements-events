@@ -13,8 +13,8 @@
         <div id="<%=todo.id%>">
           <h2><%=todo.todo_content%></h2>
           <p>completed?: <%=todo.completed%></p>
-          <li><a href="#" class="delete">Delete</a></li>
-          <li><a href="#" class="complete">Complete</a></li>
+          <li><a href="todo/<%=todo.id%>" class="delete">Delete</a></li>
+          <li><a href="todo/<%=todo.id%>" class="complete">Complete</a></li>
         </div>
       <%end%>
     <%end%>

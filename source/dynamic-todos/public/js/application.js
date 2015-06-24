@@ -5,29 +5,32 @@ $(document).ready(function() {
 function bindEvents() {
   addTodo();
   deleteTodo();
-}
+};
 
 
 
 function deleteTodo(){
   $('.todo_list').on('click', '.delete', function(event){
+
     event.preventDefault();
 
     var task = $(event.target).closest('div').attr('id')
 
-
     var path = 'todo/' + task
+
 
 
 
     var request = $.ajax({
       url: path,
       type: "delete",
-      // data: ()
+      data: {id: task},
       dataType: 'json'
     })
 
     request.done(function(response){
+      $('#'+task).fadeOut()
+      console.log(task)
       console.log('pass')
 
     });

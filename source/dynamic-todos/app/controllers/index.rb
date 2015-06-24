@@ -19,4 +19,5 @@ delete "/todo/:id" do
   content_type :json
   @todo = Todo.find(params[:id])
   @todo.destroy
+  {content: @todo.todo_content}.to_json
 end
