@@ -26,6 +26,25 @@ function buildTodo(todoName) {
 var addToDoItem = function() {
   $('form').on('submit', function(event) {
     event.preventDefault();
+
+    var form = $(this)
+    var data = form.serialize();
+
+    $.ajax({
+      url: '/add_todo',
+      type: 'post',
+      dataType: 'json',
+      data: data
+    })
+
+    .done(function(response){
+      console.log(response);
+    })
+
+    .fail(function(response){
+      console.log("addToDoItem(); failed.", response)
+    });
+
   });
 };
 

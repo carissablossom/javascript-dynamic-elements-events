@@ -4,10 +4,8 @@ get '/' do
 end
 
 post '/add_todo' do
-  @todo = Todo.new(
+  @todo = Todo.create(
     todo_content: params[:todo_content])
-  @todo.save
-  redirect '/'
   # p "Inside /add_todo route!"
 end
 
