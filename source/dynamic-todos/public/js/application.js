@@ -1,12 +1,12 @@
 $(document).ready(function() {
   bindEvents();
-  addToDoItem();
 });
 
 
 function bindEvents() {
   // Bind functions which add, remove, and complete todos to the appropriate
   // elements
+  addToDoItem();
 };
 
 function buildTodo(todoName) {
@@ -27,7 +27,7 @@ var addToDoItem = function() {
   $('form').on('submit', function(event) {
     event.preventDefault();
 
-    var form = $(this)
+    var form = $(this);
     var data = form.serialize();
 
     $.ajax({
@@ -39,6 +39,8 @@ var addToDoItem = function() {
 
     .done(function(response){
       console.log(response);
+      var task = $('.todo h2').html(buildTodo(response.content));
+      $('.todo_list').append(task);
     })
 
     .fail(function(response){
