@@ -35,9 +35,9 @@ function bindEvents() {
       $('.todo_list').append(buildTask);                   //                                 |
     });                                                    //                                 |
                                                            //                                 |
-    ajaxRequest.fail(functions(response) {  // Gets called if Ajax request fails (404) <------|
-      console.log("NOPE");
-      alert("NA-UHH FOOL");
+    ajaxRequest.fail(function(response) {  // Gets called if Ajax request fails (404)  <------|
+      console.log("task submission failed");
+      alert("task submission failed");
     });
   });
 
@@ -49,16 +49,47 @@ function bindEvents() {
     var getId = $(this).first().parent().parent().attr('id'); //<------ how does this work?
     var path = '/' + getId;
 
-    var request = .ajax({
+    var request = $.ajax({
       url: path,
       method: 'DELETE',
       dataType: 'JSON',
       data: {id: getId}
     });
 
+    request.done(function(response) {
+      $('#'+getId).remove();
+    });
+
+    request.fail(function(response) {
+      console.log("task deletion failed");
+      alert("task deletion failed");
+    }):
   });
 
-}
+  $('.todo_list').on('click', 'a.complete', function(e) {
+    e.preventDefault();
+
+    var getId = $(this).first().parent().parent().parent().attr('id');
+    var path = "/" + getId;
+
+    var request = $.ajax({
+      url: path,
+      dataType: 'JSON',
+      type: 'POST',
+      data: {id: getId}
+    });
+
+    request.done(function(response) {
+      console.log("task completion succeeded");
+      $('#' + getId).addClass('complete');
+    });
+
+    request.fail(function(response) {
+      console.log("task completion failed");
+      alert("task completion failed");
+    });
+  });
+};
 
 function buildTodo(todoName) {
   // gets todoTemplate stored in DOM.
@@ -70,5 +101,3 @@ function buildTodo(todoName) {
   // Returns the jQueryDOMElement to be used elsewhere.
   return $todo;
 }
-
-//Create functions to add, remove and complete todos
