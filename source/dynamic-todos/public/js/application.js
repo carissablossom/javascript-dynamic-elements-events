@@ -124,9 +124,9 @@ function bindEvents() {
     });
 
     request.done(function(response){
-
       var newTodo = buildTodo(response.name, response.id);
       $('.todo_list').append(newTodo);
+      // $('.todo h2').html(newTodo);
     });
 
     request.fail(function(response){
@@ -189,7 +189,7 @@ function buildTodo(todoName, id) {
   // Creates an jQueryDOMElement from the todoTemplate.
   var $todo = $(todoTemplate);
   // Modifies it's text to use the passed in todoName.
-  $todo.find('h2').text(todoName);
+  $todo.find('h2').html(todoName);
   // Returns the jQueryDOMElement to be used elsewhere.
   $todo.attr('id', ''+id);
   return $todo;
