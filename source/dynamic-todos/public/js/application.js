@@ -5,6 +5,7 @@ $(document).ready(function() {
 function bindEvents() {
   addTodo();
   deleteTodo();
+  completeTodo();
   // Bind functions which add, remove, and complete todos to the appropriate
   // elements
 };
